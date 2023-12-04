@@ -1,5 +1,5 @@
 board = [' ' for x in range(10)]
-
+score = [0, 0]
 
 def insertLetter(letter,pos):
     board[pos] = letter
@@ -134,6 +134,6 @@ while True:
     if x.lower() == 'y':
         board = [' ' for x in range(10)]
         print('--------------------')
-        
+        main()
     else:
         break
