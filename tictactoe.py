@@ -103,9 +103,8 @@ def score(currentScore, status):
 
 def main():
     print("Welcome to the game!")
-
     printBoard(board)
-
+    
     while not(isBoardFull(board)):
         if not(IsWinner(board , 'O')):
             playerMove()
@@ -127,7 +126,7 @@ def main():
                 printBoard(board)
         else:
             score(currentScore, "win")
-            print(f"You win!")
+            print("You win!")
             break
     
     print(f"Current score: {currentScore[0]}-{currentScore[1]}")
@@ -138,6 +137,5 @@ while True:
         board = [' ' for x in range(10)]
         print('--------------------')
         main()
-       
     else:
         break
