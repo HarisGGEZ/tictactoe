@@ -1,5 +1,5 @@
 board = [' ' for x in range(10)]
-score = [0, 0]
+currentScore = [0, 0]
 
 def insertLetter(letter,pos):
     board[pos] = letter
@@ -94,17 +94,17 @@ def selectRandom(li):
     r = random.randrange(0,ln)
     return li[r]
 
+def score(currentScore, status): 
+    if status == "win":
+        currentScore[0] = currentScore[0] + 1  
+    if status == "lose":
+        currentScore[1] = currentScore[1] + 1
+    return currentScore
+
 def main():
     print("Welcome to the game!")
-    Tie = False
-  
-        
-      
-            
-    printBoard(board)
 
-    
-    
+    printBoard(board)
 
     while not(isBoardFull(board)):
         if not(IsWinner(board , 'O')):
@@ -112,22 +112,25 @@ def main():
             printBoard(board)
         else:
             print("Sorry you lose!")
+            score(currentScore, "lose")
             break 
         if isBoardFull(board):
-             print("You tied")
+             print("You tied!")
              break
         if not(IsWinner(board , 'X')):
             move = computerMove()
             if move == 0:
                 print(" ")
-            if Tie == False:
+            else:
                 insertLetter('O' , move)
                 print('computer placed an o on position' , move , ':')
                 printBoard(board)
         else:
-            print("You win!")
+            score(currentScore, "win")
+            print(f"You win!")
             break
-        
+    
+    print(f"Current score: {currentScore[0]}-{currentScore[1]}")
 
 while True:
     x = input("Do you want to play? Press y for yes or n for no (y/n)\n")
@@ -135,5 +138,6 @@ while True:
         board = [' ' for x in range(10)]
         print('--------------------')
         main()
+       
     else:
         break
