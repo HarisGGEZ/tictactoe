@@ -1,5 +1,6 @@
 board = [' ' for x in range(10)]
 
+
 def insertLetter(letter,pos):
     board[pos] = letter
 
@@ -95,39 +96,44 @@ def selectRandom(li):
 
 def main():
     print("Welcome to the game!")
+    Tie = False
+  
+        
+      
+            
     printBoard(board)
+
+    
+    
 
     while not(isBoardFull(board)):
         if not(IsWinner(board , 'O')):
             playerMove()
             printBoard(board)
         else:
-            print("sorry you loose!")
-            break
-
+            print("Sorry you lose!")
+            break 
+        if isBoardFull(board):
+             print("You tied")
+             break
         if not(IsWinner(board , 'X')):
             move = computerMove()
             if move == 0:
                 print(" ")
-            else:
+            if Tie == False:
                 insertLetter('O' , move)
                 print('computer placed an o on position' , move , ':')
                 printBoard(board)
         else:
-            print("you win!")
+            print("You win!")
             break
-
-
-
-
-    if isBoardFull(board):
-        print("Tie game")
+        
 
 while True:
     x = input("Do you want to play? Press y for yes or n for no (y/n)\n")
     if x.lower() == 'y':
         board = [' ' for x in range(10)]
         print('--------------------')
-        main()
+        
     else:
         break
